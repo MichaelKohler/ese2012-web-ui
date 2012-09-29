@@ -13,18 +13,26 @@ module Market
 
     attr_accessor :name, :credit, :items
 
+    @@users = []
+
     # constructor - initializes the user and gives a credit of 100 if nothing else is specified
     # @param [Object] params - dictionary of symbols
     def self.init(params={})
       user = self.new
       user.name = params[:name] || "default user"
       user.credit = params[:credit] || 100
+      @@users << user
       user
     end
 
     # initialize the items array
     def initialize
       self.items = []
+    end
+
+    # returns the global user list
+    def self.all
+      @@users
     end
 
     # increase the balance
@@ -79,4 +87,5 @@ module Market
       self.items.select { |item| item.active }
     end
   end
+
 end

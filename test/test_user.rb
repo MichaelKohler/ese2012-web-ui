@@ -105,4 +105,12 @@ class UserTest < Test::Unit::TestCase
     assert(!user.buy_item?(item), "user could have bought the inactive item!")
   end
 
+  def test_all_users
+    User.all.delete_if { |user| user != nil }
+    user = User.init(:name => "Buyer")
+    owner = User.init(:name => "Owner")
+    # we should have 2 students now
+    assert(User.all.length == 2, "there are not 2 users in the users list!")
+  end
+
 end

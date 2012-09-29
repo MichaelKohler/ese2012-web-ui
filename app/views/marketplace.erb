@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Dashboard - Marketplace</title>
+    <%= includeERB('head.erb') %>
+  </head>
+  <body>
+    <%= includeERB('nav.erb') %>
+    <div class="container">
+      <section id="content">
+        <div class="row">
+          <%= includeERB('sidebar.erb') %>
+          <div class="span10">
+            <div class="alert-success alert hidden" id="loggedin">
+              <strong>Logged in!</strong><br />You've been logged in successfully!
+            </div>
+            <h1>Marketplace</h1>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <%= includeERB('libs.erb') %>
+
+    <script type="text/javascript">
+      // hide all notifications which should not be displayed
+      // TODO!! doesn't work with Sinatra at the moment..
+      if ($.getUrlVar('loggedin') == 'true')
+        $('#loggedin').show();
+    </script>
