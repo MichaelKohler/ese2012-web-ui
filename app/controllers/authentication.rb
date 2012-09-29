@@ -21,7 +21,7 @@ class Authentication < Sinatra::Application
     fail "Password wrong!" if password != username
 
     session[:name] = username
-    redirect "/"
+    redirect "/?loggedin=true"
   end
 
   get "/login" do
@@ -35,7 +35,7 @@ class Authentication < Sinatra::Application
 
   get "/logout" do
     session[:name] = nil
-    redirect "/loginform"
+    redirect "/login"
   end
 
 end

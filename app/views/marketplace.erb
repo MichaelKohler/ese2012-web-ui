@@ -11,7 +11,7 @@
         <div class="row">
           <%= includeERB('sidebar.erb') %>
           <div class="span10">
-            <div class="alert-success alert hidden" id="loggedin">
+            <div class="alert-success alert" id="loggedin">
               <strong>Logged in!</strong><br />You've been logged in successfully!
             </div>
             <h1>Marketplace</h1>
@@ -44,8 +44,8 @@
     <%= includeERB('libs.erb') %>
 
     <script type="text/javascript">
-      // hide all notifications which should not be displayed
-      // TODO!! doesn't work with Sinatra at the moment..
-      if ($.getUrlVar('loggedin') == 'true')
-        $('#loggedin').show();
+      if (typeof($.getUrlVar('loggedin')) == 'undefined')
+        $('#loggedin').hide();
     </script>
+  </body>
+</html>
