@@ -5,4 +5,7 @@
       <li><a href="/all_users"><i class="icon-align-left"></i>All users</a></li>
     </ul>
   </div>
+  <% if session[:name] %>
+  <div class="pull-right">Logged in as <%= @current_name %>.</div>
+  <% end %>
 </div>

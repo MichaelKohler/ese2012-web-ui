@@ -16,6 +16,8 @@ class App < Sinatra::Base
 
   enable :sessions
   set :public_folder, 'app/public'
+
+  # a global variable is quite hacky, but it seems to be the only way..
   $VIEWS_FOLDER = File.dirname(__FILE__) + "/views"
 
   configure :development do

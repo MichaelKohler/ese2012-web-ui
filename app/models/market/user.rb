@@ -44,6 +44,11 @@ module Market
       names
     end
 
+    # returns a user with the given name
+    def self.user_by_name(name)
+      @@users.detect { |user| user.name == name }
+    end
+
     # increase the balance
     # @param [Numeric] amount - amount to be added
     def increase_credit(amount)

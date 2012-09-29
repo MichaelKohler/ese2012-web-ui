@@ -9,24 +9,33 @@ class Main < Sinatra::Application
   end
 
   get "/" do
-    redirect '/loginform' unless session[:name]
+    redirect '/login' unless session[:name]
 
-    @time = Time.now
     @current_name = session[:name]
     @users = Market::User.all
 
-    # a global variable is quite hacky, but it seems to be the only way..
     template = ERB.new File.new($VIEWS_FOLDER + "/marketplace.erb").read, nil, "%"
     template.result(binding)
   end
 
-  get "/loginform" do
-    redirect '/' if session[:name]
+  get "/all_users" do
+    redirect '/login' unless session[:name]
 
     @current_name = session[:name]
+    @users = Market::User.all
 
-    # a global variable is quite hacky, but it seems to be the only way..
-    template = ERB.new File.new($VIEWS_FOLDER + "/login.erb").read, nil, "%"
+    template = ERB.new File.new($VIEWS_FOLDER + "/userlist.erb").read, nil, "%"
+    template.result(binding)
+  end
+
+  get "/profile/:username" do
+    redirect '/login' unless session[:name]
+
+    @current_name = session[:name]
+    @user = Market::User.user_by_name(params[:username])
+    puts "TEEEST: " + @user.to_s
+
+    template = ERB.new File.new($VIEWS_FOLDER + "/userprofile.erb").read, nil, "%"
     template.result(binding)
   end
 
