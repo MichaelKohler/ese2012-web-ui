@@ -10,16 +10,17 @@ class Authentication < Sinatra::Application
     username = params[:username]
     password = params[:password]
 
+    fail "User does not exist" unless Market::User.allNames.include?(username)
     fail "Empty username or password" if username.nil? or password.nil?
     fail "Password wrong!" if password != username
 
-    session[:username] = username
-    redirect '/'
+    session[:name] = username
+    redirect "/"
   end
 
   get "/logout" do
-    session[:username] = nil
-    redirect '/login'
+    session[:name] = nil
+    redirect "/loginform"
   end
 
 end

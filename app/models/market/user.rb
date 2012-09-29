@@ -35,6 +35,15 @@ module Market
       @@users
     end
 
+    # returns all user names
+    def self.allNames
+      names = []
+      @@users.each do |user|
+        names << user.name
+      end
+      names
+    end
+
     # increase the balance
     # @param [Numeric] amount - amount to be added
     def increase_credit(amount)
