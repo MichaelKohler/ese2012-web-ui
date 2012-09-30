@@ -30,7 +30,7 @@
                     <td><%= item.name %></td>
                     <td><%= item.price %></td>
                     <td><a href="/profile/<%= item.owner.name %>"><%= item.owner.name %></a></td>
-                    <td><a href="/buyitem/"><button class="btn btn-info small">Buy Item</button></a></td>
+                    <td><button onClick="javascript:buyItem('<%= item.name %>', '<%= item.owner.name %>');" class="btn btn-info small">Buy Item</button></td>
                     </tr>
                   <% end %>
                 <% end %>
@@ -46,6 +46,11 @@
     <script type="text/javascript">
       if (typeof($.getUrlVar('loggedin')) == 'undefined')
         $('#loggedin').hide();
+
+      function buyItem(itemName, ownerName) {
+        alert('Item: ' + itemName + ".. User: " + ownerName);
+        $.post('/buyItem', { item: itemName, owner: ownerName }, function(result) { });
+      }
     </script>
   </body>
 </html>

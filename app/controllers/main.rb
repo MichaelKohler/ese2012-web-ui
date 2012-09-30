@@ -33,7 +33,6 @@ class Main < Sinatra::Application
 
     @current_name = session[:name]
     @user = Market::User.user_by_name(params[:username])
-    puts "TEEEST: " + @user.to_s
 
     template = ERB.new File.new($VIEWS_FOLDER + "/userprofile.erb").read, nil, "%"
     template.result(binding)
