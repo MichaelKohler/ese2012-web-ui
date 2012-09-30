@@ -48,8 +48,10 @@
         $('#loggedin').hide();
 
       function buyItem(itemName, ownerName) {
-        alert('Item: ' + itemName + ".. User: " + ownerName);
-        $.post('/buyItem', { item: itemName, owner: ownerName }, function(result) { });
+        $.post('/buy_item', { item: itemName, owner: ownerName }, function(result) {
+          // well, I would rather redirect to '/' in /buy_item, but that doesn't seem to work
+          location.reload();
+        });
       }
     </script>
   </body>

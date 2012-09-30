@@ -49,6 +49,11 @@ module Market
       @@users.detect { |user| user.name == name }
     end
 
+    # returns an item with the given name
+    def item_by_name(name)
+      self.items.detect { |item| item.name == name }
+    end
+
     # increase the balance
     # @param [Numeric] amount - amount to be added
     def increase_credit(amount)
@@ -75,6 +80,7 @@ module Market
     # @param [Item] item - item to be bought
     def buy_item?(item)
       return true unless item == nil || item.owner == nil || self.credit < item.price || !item.active
+      raise "Could not buy item!"
     end
 
     # buy a specified item from another user
