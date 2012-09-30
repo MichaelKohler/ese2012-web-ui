@@ -13,6 +13,7 @@ class App < Sinatra::Base
 
   use Authentication
   use Main
+  use Marketplace
 
   enable :sessions
   set :public_folder, 'app/public'
