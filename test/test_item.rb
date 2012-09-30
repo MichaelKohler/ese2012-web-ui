@@ -35,7 +35,7 @@ class ItemTest < Test::Unit::TestCase
   def test_is_inactive_after_trade
     user = User.init(:name => "Buyer")
     initialOwner = User.init(:name => "Owner")
-    item = Item.init(:name => "normalItem", :credit => 100, :owner => initialOwner)
+    item = Item.init(:name => "normalItem", :price => 100, :owner => initialOwner)
     user.buy_item(item) if user.buy_item?(item)
     assert(!user.sell_items.include?(item), "item is still active!")
   end
