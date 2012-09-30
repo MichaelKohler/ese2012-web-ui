@@ -66,7 +66,7 @@ module Market
     def add_item(item)
       item.owner = self
       item.activate
-      self.items << item
+      self.items << item unless self.items.include?(item)
     end
 
     # checks if a user can buy the specified item

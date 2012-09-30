@@ -25,12 +25,18 @@
               <thead>
                 <th>Name</th>
                 <th>Price</th>
+                <th>State</th>
               </thead>
               <tbody>
-                <% for item in @user.sell_items %>
+                <% for item in @user.items %>
                 <tr>
                   <td><%= item.name %></td>
                   <td><%= item.price %></td>
+                  <% if item.active %>
+                  <td style="color:#00FF00;">Active</td>
+                  <% else %>
+                  <td style="color:#FF0000;">Inactive</td>
+                  <% end %>
                 </tr>
                 <% end %>
               </tbody>

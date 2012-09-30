@@ -16,6 +16,7 @@ module Market
       item.price = params[:price] || 0
       item.active = params[:active] || false
       item.owner = params[:owner]
+      params[:owner].items << item if params[:owner]
       item
     end
 

@@ -39,4 +39,11 @@ class ItemTest < Test::Unit::TestCase
     user.buy_item(item) if user.buy_item?(item)
     assert(!user.sell_items.include?(item), "item is still active!")
   end
+
+  def test_user_has_item_without_add
+    user = User.init(:name => "user")
+    item = Item.init(:name => "testItem", :owner => user)
+    assert(item.owner == user, "user is not the owner!")
+    assert(user.items.include?(item), "user doesn't have the item!")
+  end
 end
