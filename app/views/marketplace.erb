@@ -47,10 +47,13 @@
       if (typeof($.getUrlVar('loggedin')) == 'undefined')
         $('#loggedin').hide();
 
-      function buyItem(itemName, ownerName) {
-        $.post('/buy_item', { item: itemName, owner: ownerName }, function(result) {
-          // well, I would rather redirect to '/' in /buy_item, but that doesn't seem to work
-          location.reload();
+      function buyItem(itemName, ownerName) {        
+        $.ajax({
+          type: "POST",
+          url: "/buy_item",
+          data: { item: itemName, owner: ownerName }
+        }).done(function(msg) {
+          window.location.reload();
         });
       }
     </script>

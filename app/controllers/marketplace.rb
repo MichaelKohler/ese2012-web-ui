@@ -15,9 +15,6 @@ class Marketplace < Sinatra::Application
     
     @current_user = Market::User.user_by_name(session[:name])
     @current_user.buy_item(@item) if @current_user.buy_item?(@item)
-    
-    # to figure out: why does a redirect here not work?
-    # is it because of the asynchronous POST call in marketplace.erb?
   end
 
 end
