@@ -15,6 +15,10 @@ class Marketplace < Sinatra::Application
     
     @current_user = Market::User.user_by_name(session[:name])
     @current_user.buy_item(@item) if @current_user.buy_item?(@item)
+    
+    # this does what it needs to
+    # but still returns a 500 error..
+    # yesterday this worked with the same code, intermittent?
   end
 
 end
