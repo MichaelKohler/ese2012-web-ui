@@ -1,0 +1,18 @@
+Explain how a typical HTTP request is processed with the framework (the request lifecycle)
+            The different routes are defined in the files in /controllers. They are splitted into
+			different files for convenience. Based on the requested URL, different actions are
+			performed in order to get important variables which are then passed into a view (defined
+			in /views). All instance variable defined in the controller will be available to the view,
+			which is then displayed.
+     
+    Why should GET requests be indempotent?
+            After RFC 2616, 9.1.2: GET requests should only be used for retrieving information (hence
+			"GET") and not to perform any action on the server that alters data or state, so the user/
+			application can predict possible consequences. GET and HEAD are considered "safe" methods
+			(in contrary to POST, PUT and DELETE). GETting a resource multiple times should have the
+			same effect as GETting it once.
+			This has the advantages that 1) browsers can prefetch pages without changing data, 2) bots
+			and spiders may index the pages without altering data, 3) clients may cache content.
+     
+    Where should you format data for rendering?
+            In a view, in order to separate the application logic from the presentation.
