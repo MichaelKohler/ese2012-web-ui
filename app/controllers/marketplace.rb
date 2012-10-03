@@ -11,7 +11,7 @@ class Marketplace < Sinatra::Application
     redirect '/login' unless session[:name]
 
     @owner = Market::User.user_by_name(params[:owner])
-    @item = @owner.item_by_name(params[:item])
+    @item = @owner.item_by_id(params[:item].to_i)
     
     @current_user = Market::User.user_by_name(session[:name])
     @current_user.buy_item(@item) if @current_user.buy_item?(@item)

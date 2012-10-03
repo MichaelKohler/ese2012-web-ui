@@ -50,8 +50,8 @@ module Market
     end
 
     # returns an item with the given name
-    def item_by_name(name)
-      self.items.detect { |item| item.name == name }
+    def item_by_id(id)
+      self.items.detect { |item| item.id.to_i == id }
     end
 
     # increase the balance
