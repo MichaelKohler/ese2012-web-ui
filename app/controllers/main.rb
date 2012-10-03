@@ -31,10 +31,16 @@ class Main < Sinatra::Application
   get "/profile/:username" do
     redirect '/login' unless session[:name]
 
-    @current_name = session[:name]
     @user = Market::User.user_by_name(params[:username])
 
     template = ERB.new File.new($VIEWS_FOLDER + "/userprofile.erb").read, nil, "%"
+    template.result(binding)
+  end
+
+  get "/error" do
+    redirect '/login' unless session[:name]
+
+    template = ERB.new File.new($VIEWS_FOLDER + "/error.erb").read, nil, "%"
     template.result(binding)
   end
 

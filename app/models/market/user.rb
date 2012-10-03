@@ -80,7 +80,7 @@ module Market
     # @param [Item] item - item to be bought
     def buy_item?(item)
       return true unless item == nil || item.owner == nil || self.credit < item.price || !item.active
-      raise "Could not buy item!"
+      return false
     end
 
     # buy a specified item from another user

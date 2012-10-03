@@ -14,7 +14,11 @@ class Marketplace < Sinatra::Application
     @item = @owner.item_by_id(params[:item].to_i)
     
     @current_user = Market::User.user_by_name(session[:name])
-    @current_user.buy_item(@item) if @current_user.buy_item?(@item)
+    if @current_user.buy_item?(@item)
+      @current_user.buy_item(@item)
+    else
+      redirect '/error'
+    end
     
     # this does what it needs to
     # but still returns a 500 error..
